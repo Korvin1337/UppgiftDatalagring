@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250120145052_Customer and Project Table Added")]
-    partial class CustomerandProjectTableAdded
+    [Migration("20250120165420_Customer and Project Table Added v2")]
+    partial class CustomerandProjectTableAddedv2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -60,10 +60,6 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EndDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 

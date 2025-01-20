@@ -60,10 +60,6 @@ namespace Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("ProjectManager")
                         .IsRequired()
                         .HasColumnType("nvarchar(50)");

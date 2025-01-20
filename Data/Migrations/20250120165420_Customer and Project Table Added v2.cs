@@ -5,7 +5,7 @@
 namespace Data.Migrations
 {
     /// <inheritdoc />
-    public partial class CustomerandProjectTableAdded : Migration
+    public partial class CustomerandProjectTableAddedv2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,10 +34,9 @@ namespace Data.Migrations
                     StartDate = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     EndDate = table.Column<string>(type: "nvarchar(50)", nullable: false),
                     ProjectManager = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    CustomerId = table.Column<int>(type: "int", nullable: false),
                     TotalCost = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Status = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {

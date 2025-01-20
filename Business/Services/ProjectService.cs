@@ -30,7 +30,7 @@ public class ProjectService(DataContext context) : IProjectService
     public IEnumerable<ProjectEntity> GetProjects()
     {
         try {
-            return _context.Projects;
+            return _context.Projects; /* var projects = _context.Projects.Include(x => x.Name).ToList(); */
         } catch (Exception ex) {
             Debug.Write(ex);
             return null!;
