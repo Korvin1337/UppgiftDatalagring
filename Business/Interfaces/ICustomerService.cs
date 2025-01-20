@@ -1,4 +1,5 @@
 ﻿using Business.Dtos;
+using Business.Models;
 using Data.Entities;
 
 namespace Business.Interfaces
@@ -7,8 +8,8 @@ namespace Business.Interfaces
     {
         CustomerEntity CreateCustomer(CustomerRegistrationForm form);
         bool DeleteCustomerById(int id);
-        CustomerEntity GetCustomer(int id);
-        IEnumerable<CustomerEntity> GetAllCustomers();
+        CustomerEntity GetCustomerById(int id);
+        IEnumerable<Customer> GetAllCustomers();
         CustomerEntity UpdateCustomer(CustomerEntity customerEntity);
     }
 }

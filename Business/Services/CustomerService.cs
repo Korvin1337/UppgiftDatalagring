@@ -1,7 +1,9 @@
 ﻿using Business.Dtos;
 using Business.Interfaces;
+using Business.Models;
 using Data.Contexts;
 using Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,17 +36,29 @@ public class CustomerService(DataContext context) : ICustomerService
         }
     }
 
-    public IEnumerable<CustomerEntity> GetAllCustomers()
+    public IEnumerable<Customer> GetAllCustomers()
     {
         try {
-            return _context.Customers;
+            var customers = new List<Customer>();
+
+            /*var entities = _context.Customers.Include(x => x.CustomerId).ToList();*/
+            var entities = _context.Customers.ToList();
+
+            entities.ForEach(c => customers.Add(new Customer
+            {
+                CustomerId = c.CustomerId,
+                Name = c.Name,
+                Email = c.Email
+            }));
+
+            return customers;
         } catch (Exception ex) {
             Debug.Write(ex);
             return null!;
         }
     }
 
-    public CustomerEntity GetCustomer(int id)
+    public CustomerEntity GetCustomerById(int id)
     {
         try {
             var customerEntity = _context.Customers.FirstOrDefault(x => x.CustomerId == id);

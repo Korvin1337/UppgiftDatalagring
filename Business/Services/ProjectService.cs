@@ -1,5 +1,6 @@
 ﻿using Business.Dtos;
 using Business.Interfaces;
+using Business.Models;
 using Data.Contexts;
 using Data.Entities;
 using System;
@@ -38,28 +39,41 @@ public class ProjectService(DataContext dataContext) : IProjectService
         }
     }
 
-    public IEnumerable<ProjectEntity> GetAllProjects()
+    public IEnumerable<Project> GetAllProjects()
     {
-        try {
-            return _context.Projects; /* var projects = _context.Projects.Include(x => x.Name).ToList(); */
-        } catch (Exception ex) {
+        try
+        {
+            var projects = new List<Project>();
+
+            /*var entities = _context.Customers.Include(x => x.CustomerId).ToList();*/
+            var entities = _context.Projects.ToList();
+
+            entities.ForEach(p => projects.Add(new Project
+            {
+                ProjectId = p.ProjectId,
+
+                ProjectName = p.ProjectName,
+
+                StartDate = p.StartDate,
+
+                EndDate = p.EndDate,
+
+                ProjectManager = p.ProjectManager,
+
+                CustomerId = p.CustomerId,
+
+                TotalCost = p.TotalCost,
+
+                Status = p.Status
+            }));
+
+            return projects;
+        }
+        catch (Exception ex)
+        {
             Debug.Write(ex);
             return null!;
         }
-    }
-
-    public ProjectEntity GetProjectById(int id)
-    {
-        try {
-            var projectEntity = _context.Projects.FirstOrDefault(x => x.ProjectId == id);
-
-            return projectEntity ?? null!;
-        } catch (Exception ex) {
-            Debug.Write(ex);
-            return null!;
-        }
-
-            
     }
 
     public ProjectEntity UpdateProject(ProjectEntity projectEntity)
@@ -94,6 +108,21 @@ public class ProjectService(DataContext dataContext) : IProjectService
         } catch (Exception ex) {
             Debug.Write(ex);
             return false!;
+        }
+    }
+
+    public ProjectEntity GetProjectById(int id)
+    {
+        try
+        {
+            var projectEntity = _context.Projects.FirstOrDefault(x => x.ProjectId == id);
+
+            return projectEntity ?? null!;
+        }
+        catch (Exception ex)
+        {
+            Debug.Write(ex);
+            return null!;
         }
     }
 }
