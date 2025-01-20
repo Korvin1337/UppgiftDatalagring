@@ -1,4 +1,5 @@
-﻿using Business.Interfaces;
+﻿using Business.Dtos;
+using Business.Interfaces;
 using Data.Contexts;
 using Data.Entities;
 using System;
@@ -10,24 +11,34 @@ using System.Threading.Tasks;
 
 namespace Business.Services;
 
-public class ProjectService(DataContext context) : IProjectService
+public class ProjectService(DataContext dataContext) : IProjectService
 {
-    private readonly DataContext _context = context;
+    private readonly DataContext _context = dataContext;
 
-    public ProjectEntity CreateProject(ProjectEntity projectEntity)
+    public ProjectEntity CreateProject(ProjectRegistrationForm form)
     {
         try {
-            _context.Projects.Add(projectEntity);
-            _context.SaveChanges();
+            var projectEntity = new ProjectEntity
+            {
+                ProjectName = form.ProjectName,
+                StartDate = form.StartDate,
+                EndDate = form.EndDate,
+                ProjectManager = form.ProjectManager,
+                CustomerId = form.CustomerId,
+                TotalCost = form.TotalCost,
+                Status = form.Status
+            };
+                _context.Projects.Add(projectEntity);
+                _context.SaveChanges();
 
-            return projectEntity;
+                return projectEntity;
         } catch (Exception ex) {
             Debug.Write(ex);
             return null!;
         }
     }
 
-    public IEnumerable<ProjectEntity> GetProjects()
+    public IEnumerable<ProjectEntity> GetAllProjects()
     {
         try {
             return _context.Projects; /* var projects = _context.Projects.Include(x => x.Name).ToList(); */
@@ -72,7 +83,7 @@ public class ProjectService(DataContext context) : IProjectService
 
             if (projectEntity != null)
             {
-                context.Remove(projectEntity);
+                _context.Remove(projectEntity);
                 _context.SaveChanges();
                 return true;
             }

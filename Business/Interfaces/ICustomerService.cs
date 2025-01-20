@@ -1,13 +1,14 @@
-﻿using Data.Entities;
+﻿using Business.Dtos;
+using Data.Entities;
 
 namespace Business.Interfaces
 {
     public interface ICustomerService
     {
-        CustomerEntity CreateCustomer(CustomerEntity customerEntity);
+        CustomerEntity CreateCustomer(CustomerRegistrationForm form);
         bool DeleteCustomerById(int id);
         CustomerEntity GetCustomer(int id);
-        IEnumerable<CustomerEntity> GetCustomers();
+        IEnumerable<CustomerEntity> GetAllCustomers();
         CustomerEntity UpdateCustomer(CustomerEntity customerEntity);
     }
 }

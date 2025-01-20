@@ -1,4 +1,5 @@
-﻿using Business.Interfaces;
+﻿using Business.Dtos;
+using Business.Interfaces;
 using Data.Contexts;
 using Data.Entities;
 using System;
@@ -14,20 +15,26 @@ public class CustomerService(DataContext context) : ICustomerService
 {
     private readonly DataContext _context = context;
 
-    public CustomerEntity CreateCustomer(CustomerEntity customerEntity)
+    public CustomerEntity CreateCustomer(CustomerRegistrationForm form)
     {
         try {
-        _context.Customers.Add(customerEntity);
-        _context.SaveChanges();
+            var customerEntity = new CustomerEntity
+            {
+                Name = form.Name,
+                Email = form.Email
+            };
+            _context.Customers.Add(customerEntity);
+            _context.SaveChanges();
 
-        return customerEntity;
+            return customerEntity;
+
         } catch (Exception ex) {
             Debug.Write(ex);
             return null!;
         }
     }
 
-    public IEnumerable<CustomerEntity> GetCustomers()
+    public IEnumerable<CustomerEntity> GetAllCustomers()
     {
         try {
             return _context.Customers;
