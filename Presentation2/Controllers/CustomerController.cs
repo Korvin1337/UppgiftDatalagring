@@ -11,17 +11,26 @@ public class CustomersController(ICustomerService customerService) : ControllerB
     private readonly ICustomerService _customerService = customerService;
 
     [HttpPost]
-    public IActionResult Create(CustomerRegistrationForm form)
+    public async Task<IActionResult> Create(CustomerRegistrationForm form)
     {
         try
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return BadRequest();
+                if (await _customerService.AlreadyExistsAsync(x => x.Name == form.Name))
+                {
+                    return Conflict("Customer with same name already excists");
+                }
+
+                var customer = await _customerService.CreateCustomerAsync(form);
+                if (customer != null)
+                {
+                    return Ok(customer);
+                }
+                return Ok(customer);
             }
 
-            var result = _customerService.CreateCustomer(form);
-            return Ok(result);
+            return BadRequest();
         }
         catch (Exception ex)
         {
@@ -31,11 +40,11 @@ public class CustomersController(ICustomerService customerService) : ControllerB
 
 
     [HttpGet]
-    public IActionResult GetAll()
+    public async Task<IActionResult> GetAll()
     {
         try
         {
-            var customer = _customerService.GetAllCustomers();
+            var customer = await _customerService.GetAllCustomersAsync();
             return Ok(customer);
         }
         catch (Exception ex)
