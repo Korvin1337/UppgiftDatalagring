@@ -1,5 +1,7 @@
-﻿namespace Data.Interfaces;
+﻿using Data.Entities;
 
-public interface ICustomerRepository
+namespace Data.Interfaces;
+
+public interface ICustomerRepository : IBaseRepository<CustomerEntity>
 {
 }
