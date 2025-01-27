@@ -17,10 +17,10 @@ public class CustomersController(ICustomerService customerService) : ControllerB
         {
             if (ModelState.IsValid)
             {
-                if (await _customerService.AlreadyExistsAsync(x => x.Name == form.Name))
+                /*if (await _customerService.AlreadyExistsAsync(x => x.Name == form.Name))
                 {
                     return Conflict("Customer with same name already excists");
-                }
+                }*/
 
                 var customer = await _customerService.CreateCustomerAsync(form);
                 if (customer != null)

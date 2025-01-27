@@ -3,15 +3,14 @@ using Business.Models;
 using Data.Entities;
 using System.Linq.Expressions;
 
-namespace Business.Interfaces
+namespace Business.Interfaces;
+
+public interface IProjectService
 {
-    public interface IProjectService
-    {
-        Task<bool> AlreadyExistsAsync(Expression<Func<ProjectEntity, bool>> expression);
-        Task<Project> CreateProjectAsync(ProjectRegistrationForm form);
-        Task<bool> DeleteProjectAsync(int id);
-        Task<IEnumerable<Project>> GetAllProjectsAsync();
-        Task<ProjectEntity> GetProjectAsync(Expression<Func<ProjectEntity, bool>> expression);
-        Task<Project> UpdateProjectAsync(ProjectUpdateForm form);
-    }
+    Task<IResult> CreateProjectAsync(ProjectRegistrationForm form);
+    Task<IResult> GetAllProjectsAsync();
+    /*Task<IResult> AlreadyExistsAsync();*/
+    Task<IResult> GetProjectAsync(int id);
+    Task<IResult> UpdateProjectAsync(int id, ProjectUpdateForm form);
+    Task<IResult> DeleteProjectAsync(int id);
 }

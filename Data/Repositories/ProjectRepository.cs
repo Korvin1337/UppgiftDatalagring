@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories;
 
-public class ProjectRepository(DataContext context) : BaseRepository<ProjectEntity>(context) , IProjectRepository
+public class ProjectRepository(DataContext context) : BaseLazyRepository<ProjectEntity>(context) , IProjectRepository
 {
-    private readonly DataContext _context = context;
 }

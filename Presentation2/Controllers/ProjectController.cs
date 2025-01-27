@@ -19,10 +19,10 @@ public class ProjectsController(IProjectService projectService) : ControllerBase
             {
                 if (ModelState.IsValid)
                 {
-                    if (await _projectService.AlreadyExistsAsync(x => x.ProjectName == form.ProjectName))
+                    /*if (await _projectService.AlreadyExistsAsync(x => x.ProjectName == form.ProjectName))
                     {
                         return Conflict("Project with same name already excists");
-                    }
+                    }*/
 
                     var project = await _projectService.CreateProjectAsync(form);
                     if (project != null)

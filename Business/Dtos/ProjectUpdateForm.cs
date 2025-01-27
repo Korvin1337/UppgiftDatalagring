@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Business.Dtos;
 
-public class ProjectUpdateForm
+public class ProjectUpdateForm()
 {
-    public int ProjectId { get; set; }
-
     public string ProjectName { get; set; } = null!;
 
     public string StartDate { get; set; } = null!; /* Make DateTime? */

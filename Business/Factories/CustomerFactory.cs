@@ -16,7 +16,7 @@ public static class CustomerFactory
     public static CustomerEntity Create(CustomerRegistrationForm form) => new()
     {
         Name = form.Name,
-        Email = form.Email
+        Email = form.Email.ToLower()
     };
 
     public static Customer Create(CustomerEntity entity) => new()
@@ -28,14 +28,13 @@ public static class CustomerFactory
 
     public static CustomerUpdateForm Create(Customer customer) => new()
     {
-        CustomerId = customer.CustomerId,
         Name = customer.Name,
         Email = customer.Email
     };
 
-    public static CustomerEntity Create(CustomerUpdateForm form) => new()
+    public static CustomerEntity Create(CustomerEntity customerEntity, CustomerUpdateForm form) => new()
     {
-        CustomerId = form.CustomerId,
+        CustomerId = customerEntity.CustomerId,
         Name = form.Name,
         Email = form.Email
     };

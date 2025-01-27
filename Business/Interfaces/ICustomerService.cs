@@ -3,15 +3,14 @@ using Business.Models;
 using Data.Entities;
 using System.Linq.Expressions;
 
-namespace Business.Interfaces
+namespace Business.Interfaces;
+
+public interface ICustomerService
 {
-    public interface ICustomerService
-    {
-        Task<bool> AlreadyExistsAsync(Expression<Func<CustomerEntity, bool>> expression);
-        Task<Customer> CreateCustomerAsync(CustomerRegistrationForm form);
-        Task<bool> DeleteCustomerAsync(int id);
-        Task<IEnumerable<Customer>> GetAllCustomersAsync();
-        Task<CustomerEntity> GetCustomerAsync(Expression<Func<CustomerEntity, bool>> expression);
-        Task<Customer> UpdateCustomerAsync(CustomerUpdateForm form);
-    }
+    Task<IResult> CreateCustomerAsync(CustomerRegistrationForm form);
+    Task<IResult> GetAllCustomersAsync();
+    /*Task<IResult> AlreadyExistsAsync();*/
+    Task<IResult> GetCustomerAsync(int id);
+    Task<IResult> UpdateCustomerAsync(int id, CustomerUpdateForm form);
+    Task<IResult> DeleteCustomerAsync(int id);
 }

@@ -39,7 +39,6 @@ public static class ProjectFactory
 
     public static ProjectUpdateForm Create(Project project) => new()
     {
-        ProjectId = project.ProjectId,
         ProjectName = project.ProjectName,
         StartDate = project.StartDate,
         EndDate = project.EndDate,
@@ -49,9 +48,9 @@ public static class ProjectFactory
         Status = project.Status
     };
 
-    public static ProjectEntity Create(ProjectUpdateForm form) => new()
+    public static ProjectEntity Create(ProjectEntity projectEntity, ProjectUpdateForm form) => new()
     {
-        ProjectId = form.ProjectId,
+        ProjectId = projectEntity.ProjectId,
         ProjectName = form.ProjectName,
         StartDate = form.StartDate,
         EndDate = form.EndDate,
