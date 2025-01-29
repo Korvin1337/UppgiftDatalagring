@@ -29,4 +29,9 @@ public class CustomerInputService(InputHandler inputHandler)
             Email = _inputHandler.GetInput("Enter email: ")
         };
     }
+
+    public virtual int CollectDeleteCustomerData()
+    {
+        return Int32.Parse(_inputHandler.GetInput("Enter a customer ID to delete: "));
+    }
 }

@@ -40,4 +40,9 @@ public class ProjectInputService(InputHandler inputHandler)
             Status = _inputHandler.GetInput("Enter status: (Not Started, Ongoing, Completeted)")
         };
     }
+
+    public virtual int CollectDeleteProjectData()
+    {
+        return Int32.Parse(_inputHandler.GetInput("Enter project ID to delete: "));
+    }
 }

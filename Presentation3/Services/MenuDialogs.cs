@@ -39,8 +39,10 @@ public class MenuDialogs(ICustomerService customerService, IProjectService proje
         _consoleWrapper.Write($"{"2. ",-5} Create a Project");
         _consoleWrapper.Write($"{"3. ",-5} Update a Customer");
         _consoleWrapper.Write($"{"4. ",-5} Update a Project");
-        _consoleWrapper.Write($"{"5. ",-5} View all Customers");
-        _consoleWrapper.Write($"{"6. ",-5} View all Projects");
+        _consoleWrapper.Write($"{"5. ",-5} Delete a Customer");
+        _consoleWrapper.Write($"{"6. ",-5} Delete a Project");
+        _consoleWrapper.Write($"{"7. ",-5} View all Customers");
+        _consoleWrapper.Write($"{"8. ",-5} View all Projects");
         _consoleWrapper.Write($"{"Q. ",-5} Quit Program");
         _consoleWrapper.Write("--------------------------------");
         var option = _inputHandler.GetInput("Choose option: ");
@@ -60,9 +62,15 @@ public class MenuDialogs(ICustomerService customerService, IProjectService proje
                 await UpdateProject();
                 break;
             case "5":
-                await ViewCustomers();
+                await DeleteCustomer();
                 break;
             case "6":
+                await DeleteProject();
+                break;
+            case "7":
+                await ViewCustomers();
+                break;
+            case "8":
                 await ViewProjects();
                 break;
             case "q":
@@ -194,6 +202,40 @@ public class MenuDialogs(ICustomerService customerService, IProjectService proje
 
             _consoleWrapper.Write("Press enter to continue: ");
             _consoleWrapper.ReadLine();
+        }
+        catch (Exception ex)
+        {
+            _messageHandler.ShowMessage(ex.Message);
+        }
+    }
+
+    public async Task DeleteCustomer()
+    {
+        await ViewCustomers();
+        int deleteData = _customerInputService.CollectDeleteCustomerData();
+
+        try
+        {
+            await _customerService.DeleteCustomerAsync(deleteData);
+
+            _messageHandler.ShowMessage("Customer Successfully Deleted");
+        }
+        catch (Exception ex)
+        {
+            _messageHandler.ShowMessage(ex.Message);
+        }
+    }
+
+    public async Task DeleteProject()
+    {
+        await ViewProjects();
+        int deleteData = _projectInputService.CollectDeleteProjectData();
+
+        try
+        {
+            await _projectService.DeleteProjectAsync(deleteData);
+
+            _messageHandler.ShowMessage("Project Successfully Deleted");
         }
         catch (Exception ex)
         {
