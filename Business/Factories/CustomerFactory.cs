@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Factories;
 
-public static class CustomerFactory
+public class CustomerFactory
 {
     public static CustomerRegistrationForm Create() => new();
 
@@ -38,4 +38,11 @@ public static class CustomerFactory
         Name = form.Name,
         Email = form.Email
     };
+
+    /* Successfully updating customers with the help of chatgpt 4o generate code, void method that updates the entity directly from the form data */
+    public static void Update(CustomerEntity customerEntity, CustomerUpdateForm form)
+    {
+        customerEntity.Name = form.Name;
+        customerEntity.Email = form.Email;
+    }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Business.Factories;
 
-public static class ProjectFactory
+public class ProjectFactory
 {
     public static ProjectRegistrationForm Create() => new();
 
@@ -59,5 +59,16 @@ public static class ProjectFactory
         TotalCost = form.TotalCost,
         Status = form.Status
     };
+
+    public static void Update(ProjectEntity projectEntity, ProjectUpdateForm form)
+    {
+        projectEntity.ProjectName = form.ProjectName;
+        projectEntity.StartDate = form.StartDate;
+        projectEntity.EndDate = form.EndDate;
+        projectEntity.ProjectManager = form.ProjectManager;
+        projectEntity.CustomerId = form.CustomerId;
+        projectEntity.TotalCost = form.TotalCost;
+        projectEntity.Status = form.Status;
+    }
 
 }

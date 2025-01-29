@@ -88,9 +88,10 @@ public class CustomerService(ICustomerRepository customerRepository) : ICustomer
             if (customerEntity == null)
                 return Result.NotFound("Customer was not found.");
 
-            customerEntity = CustomerFactory.Create(customerEntity, form);
+            /* Chat gpt help me updating the customers by creating a new update method in the factory, no need to save variable anymore since its void */
+            CustomerFactory.Update(customerEntity, form);
+            
             var result = await _customerRepository.UpdateAsync(customerEntity);
-
             return result ? Result.Ok() : Result.Error("Unable to update customer.");
         }
         catch (Exception ex)

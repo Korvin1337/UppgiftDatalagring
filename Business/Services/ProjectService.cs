@@ -90,9 +90,9 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
             if (projectEntity == null)
                 return Result.NotFound("project was not found.");
 
-            projectEntity = ProjectFactory.Create(projectEntity, form);
+            ProjectFactory.Update(projectEntity, form);
+            
             var result = await _projectRepository.UpdateAsync(projectEntity);
-
             return result ? Result.Ok() : Result.Error("Unable to update project.");
         }
         catch (Exception ex)
