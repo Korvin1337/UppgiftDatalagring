@@ -2,6 +2,6 @@
 
 namespace Data.Interfaces;
 
-public interface ICustomerRepository : IBaseLazyRepository<CustomerEntity>
+public interface ICustomerRepository : IBaseRepository<CustomerEntity>
 {
 }

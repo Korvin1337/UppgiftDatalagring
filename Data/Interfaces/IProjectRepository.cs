@@ -2,6 +2,6 @@
 
 namespace Data.Interfaces;
 
-public interface IProjectRepository : IBaseLazyRepository<ProjectEntity>
+public interface IProjectRepository : IBaseRepository<ProjectEntity>
 {
 }

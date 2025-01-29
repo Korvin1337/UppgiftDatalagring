@@ -9,6 +9,6 @@ using System.Threading.Tasks;
 
 namespace Data.Repositories;
 
-public class CustomerRepository(DataContext context) : BaseLazyRepository<CustomerEntity>(context), ICustomerRepository
+public class CustomerRepository(DataContext context) : BaseRepository<CustomerEntity>(context), ICustomerRepository
 {
 }
