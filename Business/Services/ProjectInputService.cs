@@ -16,14 +16,13 @@ public class ProjectInputService(InputHandler inputHandler)
     {
         return new ProjectRegistrationForm
         {
-            /*ProjectId = _inputHandler.GetInput("Enter project ID: "),*/
             ProjectName  = _inputHandler.GetInput("Enter project name: "),
-            StartDate = _inputHandler.GetInput("Enter start date: "),
-            EndDate = _inputHandler.GetInput("Enter end date: "),
+            StartDate = DateTime.Parse(_inputHandler.GetInput("Enter start date: ")),
+            EndDate = DateTime.Parse(_inputHandler.GetInput("Enter end date: ")),
             ProjectManager = _inputHandler.GetInput("Enter project manager: "),
             CustomerId = Int32.Parse(_inputHandler.GetInput("Enter customer Id: ")),
             TotalCost = Decimal.Parse(_inputHandler.GetInput("Enter total cost: ")),
-            Status  =  _inputHandler.GetInput("Enter status: ")
+            StatusId  =  Int32.Parse(_inputHandler.GetInput("Enter status: "))
         };
     }
 
@@ -32,12 +31,12 @@ public class ProjectInputService(InputHandler inputHandler)
         return new ProjectUpdateForm
         {
             ProjectName = _inputHandler.GetInput("Enter project name: "),
-            StartDate = _inputHandler.GetInput("Enter start date: "),
-            EndDate = _inputHandler.GetInput("Enter end date: "),
+            StartDate = DateTime.Parse(_inputHandler.GetInput("Enter start date: ")),
+            EndDate = DateTime.Parse(_inputHandler.GetInput("Enter end date: ")),
             ProjectManager = _inputHandler.GetInput("Enter project manager: "),
             CustomerId = Int32.Parse(_inputHandler.GetInput("Enter customer Id: ")),
             TotalCost = Decimal.Parse(_inputHandler.GetInput("Enter total cost: ")),
-            Status = _inputHandler.GetInput("Enter status: (Not Started, Ongoing, Completeted)")
+            StatusId = Int32.Parse(_inputHandler.GetInput("Enter status: (Not Started, Ongoing, Completeted)"))
         };
     }
 

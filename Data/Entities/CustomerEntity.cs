@@ -21,6 +21,6 @@ public class CustomerEntity
     public string Name { get; set; } = null!;
 
     [Required]
-    [Column(TypeName = "nvarchar(150)")]
+    [Column(TypeName = "nvarchar(200)")]
     public string Email { get; set; } = null!;
 }

@@ -14,9 +14,9 @@ public class Project
 
     public string ProjectName { get; set; } = null!;
 
-    public string StartDate { get; set; } = null!;
+    public DateTime StartDate { get; set; }
 
-    public string EndDate { get; set; } = null!;
+    public DateTime EndDate { get; set; }
 
     public string ProjectManager { get; set; } = null!;
 
@@ -24,5 +24,5 @@ public class Project
 
     public decimal TotalCost { get; set; }
 
-    public string Status { get; set; } = null!;
+    public int StatusId { get; set; }
 }
