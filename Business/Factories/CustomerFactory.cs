@@ -39,7 +39,7 @@ public class CustomerFactory
         Email = form.Email
     };
 
-    /* Successfully updating customers with the help of chatgpt 4o generate code, void method that updates the entity directly from the form data */
+    /* Successfully updating customers with the help of chatgpt 4o generate code, void method that updates the entity directly from the form data. */
     public static void Update(CustomerEntity customerEntity, CustomerUpdateForm form)
     {
         customerEntity.Name = form.Name;

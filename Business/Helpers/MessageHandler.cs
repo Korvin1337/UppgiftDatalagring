@@ -34,7 +34,7 @@ public class MessageHandler(ConsoleWrapper consoleWrapper)
                $"Project Manager: {project.ProjectManager}\n" +
                $"Customer Id: {project.CustomerId}\n" +
                $"Total Cost: {project.TotalCost}\n" +
-               $"Status: {project.Status}\n";
+               $"Status: {project.StatusId}\n";
     }
 
     public void ShowCustomer(Customer customer)

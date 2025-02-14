@@ -22,7 +22,7 @@ public class ProjectFactory
         ProjectManager = form.ProjectManager,
         CustomerId = form.CustomerId,
         TotalCost = form.TotalCost,
-        Status = form.Status
+        StatusId = form.StatusId
     };
 
     public static Project Create(ProjectEntity entity) => new()
@@ -34,7 +34,7 @@ public class ProjectFactory
         ProjectManager = entity.ProjectManager,
         CustomerId = entity.CustomerId,
         TotalCost = entity.TotalCost,
-        Status = entity.Status
+        StatusId = entity.StatusId
     };
 
     public static ProjectUpdateForm Create(Project project) => new()
@@ -45,7 +45,7 @@ public class ProjectFactory
         ProjectManager = project.ProjectManager,
         CustomerId = project.CustomerId,
         TotalCost = project.TotalCost,
-        Status = project.Status
+        StatusId = project.StatusId
     };
 
     public static ProjectEntity Create(ProjectEntity projectEntity, ProjectUpdateForm form) => new()
@@ -57,7 +57,7 @@ public class ProjectFactory
         ProjectManager = form.ProjectManager,
         CustomerId = form.CustomerId,
         TotalCost = form.TotalCost,
-        Status = form.Status
+        StatusId = form.StatusId
     };
 
     public static void Update(ProjectEntity projectEntity, ProjectUpdateForm form)
@@ -68,7 +68,7 @@ public class ProjectFactory
         projectEntity.ProjectManager = form.ProjectManager;
         projectEntity.CustomerId = form.CustomerId;
         projectEntity.TotalCost = form.TotalCost;
-        projectEntity.Status = form.Status;
+        projectEntity.StatusId = form.StatusId;
     }
 
 }

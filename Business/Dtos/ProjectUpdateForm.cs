@@ -10,9 +10,9 @@ public class ProjectUpdateForm()
 {
     public string ProjectName { get; set; } = null!;
 
-    public string StartDate { get; set; } = null!; /* Make DateTime? */
+    public DateTime StartDate { get; set; }
 
-    public string EndDate { get; set; } = null!; /* Make DateTime? */
+    public DateTime EndDate { get; set; }
 
     public string ProjectManager { get; set; } = null!;
 
@@ -20,5 +20,5 @@ public class ProjectUpdateForm()
 
     public decimal TotalCost { get; set; } /*, chatgpt4o generated/suggested decimal instead of int */
 
-    public string Status { get; set; } = null!;
+    public int StatusId { get; set; }
 }
