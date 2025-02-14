@@ -33,7 +33,7 @@ public class CustomerService(ICustomerRepository customerRepository) : ICustomer
         try
         {
             if (await _customerRepository.ExistsAsync(x => x.Name == form.Name))
-                return Result.AlreadyExcists("Customer with same name already excists");
+                return Result.AlreadyExists("Customer with same name already excists");
 
             var customerEntity = CustomerFactory.Create(form);
 

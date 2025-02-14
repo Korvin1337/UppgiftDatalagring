@@ -28,7 +28,7 @@ public abstract class Result : IResult
         return new ErrorResult(404, message);
     }
 
-    public static Result AlreadyExcists(string message)
+    public static Result AlreadyExists(string message)
     {
         return new ErrorResult(409, message);
     }

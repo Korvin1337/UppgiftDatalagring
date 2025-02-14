@@ -22,7 +22,7 @@ public class MessageHandler(ConsoleWrapper consoleWrapper)
     {
         return $"Customer ID: {customer.CustomerId}\n" +
                $"First Name: {customer.Name}\n" +
-               $"Last Name: {customer.Email}\n";
+               $"Email: {customer.Email}\n";
     }
 
     public string FormatProjectDetails(Project project)

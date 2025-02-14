@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Dtos;
 
-public class CustomerUpdateForm()
+public class CustomerUpdateForm
 {
     public string Name { get; set; } = null!;
 

@@ -34,7 +34,7 @@ public class ProjectService(IProjectRepository projectRepository) : IProjectServ
         try
         {
             if (await _projectRepository.ExistsAsync(x => x.ProjectName == form.ProjectName))
-                return Result.AlreadyExcists("project with same name already excists");
+                return Result.AlreadyExists("project with same name already excists");
 
             var projectEntity = ProjectFactory.Create(form);
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Business.Dtos;
 
-public class ProjectUpdateForm()
+public class ProjectUpdateForm
 {
     public string ProjectName { get; set; } = null!;
 
