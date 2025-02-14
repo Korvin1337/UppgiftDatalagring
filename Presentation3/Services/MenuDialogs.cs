@@ -31,55 +31,64 @@ public class MenuDialogs(ICustomerService customerService, IProjectService proje
         }
     }
 
+    /* CHATGPT4o Updated my MainMenu Method to adhere to SRP, now i bind the inputs to the methods instead no need for switch case */
     public async Task MainMenu()
     {
+        DisplayMenu();
+
+        var option = _inputHandler.GetInput("Choose Uption: ").ToLower();
+
+        var menuCommands = new Dictionary<String, Func<Task>>
+        {
+            { "1", CreateCustomer },
+            { "2", CreateProject },
+            { "3", UpdateCustomer },
+            { "4", UpdateProject },
+            { "5", DeleteCustomer },
+            { "6", DeleteProject },
+            { "7", ViewCustomers },
+            { "8", ViewProjects },
+            { "q", Quit }
+        };
+
+        if (menuCommands.ContainsKey(option))
+        {
+            await menuCommands[option]();
+        }
+        else
+        {
+            _messageHandler.ShowMessage("Please enter a valid option.");
+        }
+    }
+
+    /* By suggestion of chatgpt4o generated and put my display menu is a seperate method to adhere to SRP */
+    private void DisplayMenu()
+    {
         _consoleWrapper.Write("");
-        _consoleWrapper.Write("--------------------------------");
+        _consoleWrapper.Write("------------MENU----------------");
+        _consoleWrapper.Write("");
         _consoleWrapper.Write($"{"1. ",-5} Create a Customer");
         _consoleWrapper.Write($"{"2. ",-5} Create a Project");
+        _consoleWrapper.Write("--------------------------------");
+        _consoleWrapper.Write("");
+        _consoleWrapper.Write("--------------------------------");
         _consoleWrapper.Write($"{"3. ",-5} Update a Customer");
         _consoleWrapper.Write($"{"4. ",-5} Update a Project");
+        _consoleWrapper.Write("--------------------------------");
+        _consoleWrapper.Write("");
+        _consoleWrapper.Write("--------------------------------");
         _consoleWrapper.Write($"{"5. ",-5} Delete a Customer");
         _consoleWrapper.Write($"{"6. ",-5} Delete a Project");
+        _consoleWrapper.Write("--------------------------------");
+        _consoleWrapper.Write("");
+        _consoleWrapper.Write("--------------------------------");
         _consoleWrapper.Write($"{"7. ",-5} View all Customers");
         _consoleWrapper.Write($"{"8. ",-5} View all Projects");
+        _consoleWrapper.Write("--------------------------------");
+        _consoleWrapper.Write("");
+        _consoleWrapper.Write("--------------------------------");
         _consoleWrapper.Write($"{"Q. ",-5} Quit Program");
         _consoleWrapper.Write("--------------------------------");
-        var option = _inputHandler.GetInput("Choose option: ");
-
-        switch (option.ToString().ToLower())
-        {
-            case "1":
-                await CreateCustomer();
-                break;
-            case "2":
-                await CreateProject();
-                break;
-            case "3":
-                await UpdateCustomer();
-                break;
-            case "4":
-                await UpdateProject();
-                break;
-            case "5":
-                await DeleteCustomer();
-                break;
-            case "6":
-                await DeleteProject();
-                break;
-            case "7":
-                await ViewCustomers();
-                break;
-            case "8":
-                await ViewProjects();
-                break;
-            case "q":
-                Quit();
-                break;
-            default:
-                _messageHandler.ShowMessage("Please enter a valid option: ");
-                break;
-        }
     }
 
     public async Task CreateCustomer()
@@ -249,7 +258,8 @@ public class MenuDialogs(ICustomerService customerService, IProjectService proje
         return _inputHandler.GetInput("Do you want to exit? (y/n): ").ToLower();
     }
 
-    public void Quit()
+    /* Chatgpt4o updated my Quit methods to be able to be binded as option in the dictionary menu option */
+    public Task Quit()
     {
         var option = GetQuitOption();
 
@@ -262,8 +272,9 @@ public class MenuDialogs(ICustomerService customerService, IProjectService proje
                 break;
             default:
                 _messageHandler.ShowMessage("Invalid input, please enter 'y' to quit or 'n' to keep runiing the program");
-                Quit();
-                break;
+                return Quit();
         }
+
+        return Task.CompletedTask;
     }
 }
